@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Simon Lau — IT student at UNIMAS. Building efficient, secure, user-centric digital solutions." />
+  <title>Simon Lau — Portfolio</title>
+
+  <!-- Apply saved theme before the page paints (prevents a light/dark flash) -->
+  <script>
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) { /* storage unavailable: fall back to light */ }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== SKIP LINK ===== -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home" class="nav__logo" aria-label="Simon Lau, back to top">SL<span class="nav__dot">.</span></a>
+
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#home" class="nav__link">Home</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li><a href="#process" class="nav__link">Process</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li>
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero" aria-labelledby="heroTitle">
+      <div class="hero__vertical hero__vertical--left" aria-hidden="true">
+        PORTFOLIO
+      </div>
+
+      <div class="hero__content">
+        <h1 class="hero__title" id="heroTitle">PORTFOLIO<span class="visually-hidden"> of Simon Lau</span></h1>
+        <div class="hero__divider" aria-hidden="true"></div>
+        <p class="hero__tagline">LOGIC FIRST, LIMITS NEVER.<br>ENGINEERING THE FUTURE.</p>
+        <p class="hero__name"><span class="red-bar" aria-hidden="true"></span>SIMON LAU</p>
+        <p class="hero__role">INFORMATION TECHNOLOGY STUDENT</p>
+      </div>
+
+      <div class="hero__portrait-wrap">
+        <div class="hero__circle" aria-hidden="true"></div>
+        <img src="images/profile.png" alt="Portrait of Simon Lau" class="hero__portrait" width="400" height="500" />
+      </div>
+
+      <div class="hero__vertical hero__vertical--right" aria-hidden="true">
+        LOGIC • DESIGN • FUTURE
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section about" aria-labelledby="aboutTitle">
+      <div class="section__header">
+        <span class="section__line" aria-hidden="true"></span>
+        <h2 class="section__title" id="aboutTitle">ABOUT ME</h2>
+      </div>
+
+      <div class="about__grid">
+        <p class="about__quote">
+          "Building efficient and secure solutions."
+        </p>
+
+        <p class="about__bio">
+          I am an Information Technology student at Universiti Malaysia Sarawak with a passion for building efficient, secure, and user-centric digital solutions. I love bridging the gap between complex backend logic and seamless user experiences.
+        </p>
+
+        <ul class="about__bullets">
+          <li>MINIMAL DESIGN</li>
+          <li>USER-CENTERED</li>
+          <li>EFFICIENT</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="section projects" aria-labelledby="projectsTitle">
+      <div class="section__header">
+        <span class="section__line" aria-hidden="true"></span>
+        <h2 class="section__title" id="projectsTitle">SELECTED WORK</h2>
+      </div>
+
+      <div class="projects__grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <img src="images/project1.jpg" alt="Mi Kolok Nyaman food ordering system interface" class="project-card__img" width="600" height="400" loading="lazy" />
+          <p class="project-card__meta"><span class="project-card__num">01</span> FOOD ORDERING SYSTEM</p>
+          <h3 class="project-card__title">MI KOLOK NYAMAN SYSTEM</h3>
+          <p class="project-card__desc">A Mi Kolok ordering system where users can view food descriptions, modify orders, and add custom add-ons.</p>
+          <!-- TODO: replace with your real repo or demo link -->
+          <a href="https://github.com/Xunn" target="_blank" rel="noopener" class="project-card__link">VIEW PROJECT <span aria-hidden="true">→</span><span class="visually-hidden">: Mi Kolok Nyaman System (opens in new tab)</span></a>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <img src="images/project2.jpg" alt="Autonomous Rapid Transit app prototype map interface" class="project-card__img" width="600" height="400" loading="lazy" />
+          <p class="project-card__meta"><span class="project-card__num">02</span> APP PROTOTYPE</p>
+          <h3 class="project-card__title">AUTONOMOUS RAPID TRANSIT (ART)</h3>
+          <p class="project-card__desc">Prototype with an interactive map — filter POIs, stations, and routes; suggests the nearest station to your destination and redirects to ART ticket booking.</p>
+          <!-- TODO: replace with your real repo or demo link -->
+          <a href="https://github.com/Xunn" target="_blank" rel="noopener" class="project-card__link">VIEW PROJECT <span aria-hidden="true">→</span><span class="visually-hidden">: Autonomous Rapid Transit (opens in new tab)</span></a>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <img src="images/project3.jpg" alt="Campus Navigator web app interface" class="project-card__img" width="600" height="400" loading="lazy" />
+          <p class="project-card__meta"><span class="project-card__num">03</span> WEB APP</p>
+          <h3 class="project-card__title">CAMPUS NAVIGATOR</h3>
+          <p class="project-card__desc">An interactive campus map that helps students find lecture halls, labs, and facilities with real-time search.</p>
+          <!-- TODO: replace with your real repo or demo link -->
+          <a href="https://github.com/Xunn" target="_blank" rel="noopener" class="project-card__link">VIEW PROJECT <span aria-hidden="true">→</span><span class="visually-hidden">: Campus Navigator (opens in new tab)</span></a>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+          <img src="images/project4.jpg" alt="Secure login module interface" class="project-card__img" width="600" height="400" loading="lazy" />
+          <p class="project-card__meta"><span class="project-card__num">04</span> BACKEND SYSTEM</p>
+          <h3 class="project-card__title">SECURE LOGIN MODULE</h3>
+          <p class="project-card__desc">A hardened authentication module with hashed passwords, session handling, and two-factor verification flow.</p>
+          <!-- TODO: replace with your real repo or demo link -->
+          <a href="https://github.com/Xunn" target="_blank" rel="noopener" class="project-card__link">VIEW PROJECT <span aria-hidden="true">→</span><span class="visually-hidden">: Secure Login Module (opens in new tab)</span></a>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project-card">
+          <img src="images/project5.jpg" alt="Personal blog engine interface" class="project-card__img" width="600" height="400" loading="lazy" />
+          <p class="project-card__meta"><span class="project-card__num">05</span> FULL-STACK PROJECT</p>
+          <h3 class="project-card__title">PERSONAL BLOG ENGINE</h3>
+          <p class="project-card__desc">A lightweight blog engine with markdown support, tagging, and a clean reading experience.</p>
+          <!-- TODO: replace with your real repo or demo link -->
+          <a href="https://github.com/Xunn" target="_blank" rel="noopener" class="project-card__link">VIEW PROJECT <span aria-hidden="true">→</span><span class="visually-hidden">: Personal Blog Engine (opens in new tab)</span></a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section id="process" class="section process" aria-labelledby="processTitle">
+      <div class="section__header">
+        <span class="section__line" aria-hidden="true"></span>
+        <h2 class="section__title" id="processTitle">MY PROCESS</h2>
+      </div>
+
+      <div class="process__grid">
+        <div class="process__step">
+          <span class="process__num">01</span>
+          <h3 class="process__title">DISCOVER</h3>
+          <p class="process__desc">Understanding user needs and technical constraints.</p>
+        </div>
+        <div class="process__step">
+          <span class="process__num">02</span>
+          <h3 class="process__title">DEFINE</h3>
+          <p class="process__desc">Planning architecture and mapping the workflow.</p>
+        </div>
+        <div class="process__step">
+          <span class="process__num">03</span>
+          <h3 class="process__title">DESIGN</h3>
+          <p class="process__desc">Building clean, efficient, and accessible solutions.</p>
+        </div>
+        <div class="process__step">
+          <span class="process__num">04</span>
+          <h3 class="process__title">DELIVER</h3>
+          <p class="process__desc">Testing, refining, and shipping a working product.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CREDENTIALS ===== -->
+    <section class="section credentials" aria-labelledby="credTitle">
+      <div class="section__header">
+        <span class="section__line" aria-hidden="true"></span>
+        <h2 class="section__title" id="credTitle">CREDENTIALS</h2>
+      </div>
+
+      <div class="credentials__grid">
+        <div class="credential">
+          <span class="credential__icon" aria-hidden="true">🎓</span>
+          <div>
+            <h3 class="credential__title">B.IT (HONS)</h3>
+            <p class="credential__sub">Universiti Malaysia Sarawak</p>
+          </div>
+        </div>
+        <div class="credential">
+          <span class="credential__icon" aria-hidden="true">🏅</span>
+          <div>
+            <h3 class="credential__title">DEAN'S LIST</h3>
+            <p class="credential__sub">Academic Excellence</p>
+          </div>
+        </div>
+        <div class="credential">
+          <span class="credential__icon" aria-hidden="true">💻</span>
+          <div>
+            <h3 class="credential__title">3+ YEARS</h3>
+            <p class="credential__sub">Coding &amp; Project Experience</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <footer id="contact" class="footer" aria-labelledby="contactHeading">
+    <div class="footer__grid">
+      <div class="footer__intro">
+        <h2 class="footer__heading" id="contactHeading">LET'S BUILD<br>SOMETHING EFFICIENT</h2>
+        <p class="footer__quote">"Simplicity is the soul of efficiency."</p>
+      </div>
+
+      <ul class="footer__contact">
+        <li><span aria-hidden="true">✉</span> <a href="mailto:slsxunn07@gmail.com?subject=Portfolio%20enquiry">slsxunn07@gmail.com</a></li>
+        <li><span aria-hidden="true">📍</span> SIBU, SARAWAK</li>
+        <li><span aria-hidden="true">💻</span> <a href="https://github.com/Xunn" target="_blank" rel="noopener">github.com/Xunn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+      </ul>
+
+      <div class="footer__mark" aria-hidden="true">SL</div>
+    </div>
+
+    <p class="footer__copy">© <span id="year">2026</span> Simon Lau. All rights reserved.</p>
+  </footer>
+
+  <!-- ===== SCROLL TO TOP ===== -->
+  <button id="scrollTop" class="scroll-top" aria-label="Scroll to top"><span aria-hidden="true">↑</span></button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

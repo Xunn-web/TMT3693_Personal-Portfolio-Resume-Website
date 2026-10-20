@@ -1,0 +1,588 @@
+/* ===============================
+   PORTFOLIO — Simon Lau
+   Japanese-inspired minimalist (English only)
+   Mobile-first: base styles = phone,
+   then 768px (tablet) and 1024px (desktop)
+   =============================== */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  --bg: #f5f1e8;
+  --text: #1a1a1a;
+  --muted: #55524b;          /* ~6.5:1 on --bg */
+  --line: #d6d0c2;
+  --red: #b3202a;            /* ~6:1 on --bg */
+  --footer-bg: #1a1a1a;
+  --footer-text: #f5f1e8;
+  --footer-accent: #ff6b73;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --header-h: 70px;
+  --pad-x: 1.25rem;
+  --max-w: 1200px;
+}
+
+html.dark {
+  --bg: #121212;
+  --text: #ece8dd;
+  --muted: #b5b0a3;          /* ~8:1 on dark bg */
+  --line: #353535;
+  --red: #ff6b73;
+  --footer-bg: #0a0a0a;
+}
+
+/* ---------- 2. RESET & BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;   /* fallback if JS is off */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ---------- 3. ACCESSIBILITY HELPERS ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.5rem;
+  z-index: 300;
+  padding: 0.6rem 1rem;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.85rem;
+}
+.skip-link:focus { left: 0.5rem; }
+
+/* ---------- 4. NAVIGATION ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s ease;
+}
+
+.nav {
+  max-width: var(--max-w);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.nav__dot { color: var(--red); }
+
+/* Hamburger (mobile) */
+.nav__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 10px;
+}
+.nav__toggle span {
+  display: block;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu (mobile = dropdown panel) */
+.nav__menu {
+  display: none;
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem var(--pad-x) 1.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.nav__menu.is-open { display: flex; }
+
+.nav__link {
+  display: inline-block;
+  padding: 0.6rem 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.nav__link:hover,
+.nav__link.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.theme-toggle:hover { border-color: var(--red); color: var(--red); }
+
+/* ---------- 5. HERO ---------- */
+.hero {
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 2rem) var(--pad-x) 3rem;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.hero__vertical { display: none; }
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 11vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  line-height: 1.1;
+}
+
+.hero__divider {
+  width: 60px;
+  height: 1px;
+  margin: 1.5rem 0;
+  background: var(--red);
+}
+
+.hero__tagline {
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.hero__name {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+}
+.red-bar {
+  display: inline-block;
+  width: 4px;
+  height: 1.4em;
+  background: var(--red);
+}
+
+.hero__role {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+}
+
+.hero__portrait-wrap {
+  position: relative;
+  justify-self: center;
+  width: min(80vw, 340px);
+}
+.hero__circle {
+  position: absolute;
+  inset: 8% 0 auto 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0.9;
+}
+.hero__portrait {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---------- 6. SECTIONS (shared) ---------- */
+.section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 4rem var(--pad-x);
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.section__line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--red);
+}
+.section__title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+}
+
+/* ---------- 7. ABOUT ---------- */
+.about__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.about__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  color: var(--muted);
+  border-left: 1px solid var(--red);
+  padding-left: 1rem;
+}
+
+.about__bio {
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.about__bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.about__bullets li {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- 8. PROJECTS ---------- */
+.projects__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.project-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--line);
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+.project-card {
+  overflow: hidden;
+}
+.project-card:hover .project-card__img { transform: scale(1.02); }
+
+.project-card__meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.project-card__num { color: var(--red); margin-right: 0.5rem; font-weight: 500; }
+
+.project-card__title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+.project-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.project-card__link {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  transition: letter-spacing 0.2s ease;
+}
+.project-card__link:hover { letter-spacing: 0.28em; }
+
+/* ---------- 9. PROCESS ---------- */
+.process__grid {
+  display: grid;
+  gap: 2rem;
+}
+.process__step {
+  border-left: 1px solid var(--line);
+  padding-left: 1.2rem;
+}
+.process__num {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  margin-bottom: 0.5rem;
+}
+.process__title {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+.process__desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ---------- 10. CREDENTIALS ---------- */
+.credentials__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.credential {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+}
+.credential__icon { font-size: 1.6rem; }
+.credential__title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+.credential__sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 11. FOOTER / CONTACT ---------- */
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 4rem var(--pad-x) 2rem;
+}
+.footer__grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+  position: relative;
+}
+.footer__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+.footer__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: rgba(245, 241, 232, 0.8);
+  line-height: 1.9;
+}
+
+.footer__contact {
+  display: grid;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+.footer__contact a {
+  border-bottom: 1px solid rgba(245, 241, 232, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer__contact a:hover {
+  color: var(--footer-accent);
+  border-color: var(--footer-accent);
+}
+.footer a:focus-visible,
+.footer button:focus-visible {
+  outline-color: var(--footer-accent);
+}
+
+.footer__mark {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(245, 241, 232, 0.1);
+  line-height: 1;
+  user-select: none;
+}
+
+.footer__copy {
+  max-width: var(--max-w);
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245, 241, 232, 0.2);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(245, 241, 232, 0.75);
+}
+
+/* ---------- 12. SCROLL TO TOP ---------- */
+.scroll-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 1.2rem;
+  opacity: 0;
+  visibility: hidden;          /* also removes it from tab order while hidden */
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+html.dark .scroll-top { color: #121212; }
+
+/* ---------- 13. SCROLL REVEAL ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 14. TABLET (≥ 768px) ---------- */
+@media (min-width: 768px) {
+  :root { --pad-x: 2.5rem; }
+
+  /* Nav becomes a horizontal bar */
+  .nav__toggle { display: none; }
+  .nav__menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .nav__link { padding: 0.3rem 0; font-size: 0.72rem; }
+
+  .hero {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+  }
+
+  .projects__grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+  .process__grid { grid-template-columns: repeat(2, 1fr); }
+  .credentials__grid { grid-template-columns: repeat(3, 1fr); }
+  .about__grid { grid-template-columns: 1fr 1.4fr; align-items: start; }
+  .about__bullets { grid-column: 1 / -1; }
+  .footer__grid { grid-template-columns: 1.4fr 1fr; align-items: end; }
+  .footer__mark { position: absolute; right: 0; top: -1rem; font-size: 7rem; }
+}
+
+/* ---------- 15. DESKTOP (≥ 1024px) ---------- */
+@media (min-width: 1024px) {
+  .nav__menu { gap: 2.2rem; }
+  .nav__link { font-size: 0.78rem; }
+
+  .hero {
+    grid-template-columns: auto 1.1fr 1fr auto;
+    gap: 2rem;
+  }
+  .hero__vertical {
+    display: block;
+    writing-mode: vertical-rl;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+  }
+  .hero__vertical--left { transform: rotate(180deg); }
+  .hero__portrait-wrap { width: min(100%, 420px); }
+
+  .projects__grid { grid-template-columns: repeat(3, 1fr); }
+  .process__grid { grid-template-columns: repeat(4, 1fr); }
+  .section { padding-top: 6rem; padding-bottom: 6rem; }
+}
+
+/* ---------- 16. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
