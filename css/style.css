@@ -323,7 +323,7 @@ button:focus-visible {
 
 .project-card__img {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 1;
   object-fit: cover;
   background: var(--line);
   margin-bottom: 1rem;
